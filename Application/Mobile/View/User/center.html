@@ -1,0 +1,42 @@
+<extend name="Base:base" />
+<block name="body">
+  <div class="user-page">
+    <div class="column base-info">
+      <div class="portrait">
+        <span>
+          <i class="iconfont icon-user"></i>
+        </span>
+      </div>
+      <div class="info">
+        <div class="nickname"></div>
+        <div class="id">id: {$userFavorite[0]['uuid']}</div>
+      </div>
+    </div>
+    <div class="column collect">
+      <a href="/user/news_collect.html">
+        <div class="title">我的收藏</div>
+        <div class="count">
+          <span>{$countUserFavorite.news_count}</span>
+          <span>
+            <i class="iconfont icon-arrow-right"></i>
+          </span>
+        </div>
+      </a>
+    </div>
+    <div class="column concern"> 
+      <a href="/user/user_concern.html">
+        <div class="title">我的关注</div>
+        <div class="count">
+          <span>{$countUserFavorite.coins_count}</span>
+          <span>
+            <i class="iconfont icon-arrow-right"></i>
+          </span>
+        </div>
+      </a>
+    </div>
+    <div class="column">
+      <div class="log-out">退出登录</div>
+    </div>
+  </div>
+</block>
+<block name="file">user-center</block>

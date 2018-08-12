@@ -1,0 +1,244 @@
+<extend name="Base:base" />
+<block name="body">
+    <div class="quotations-page">
+        <div class="quotations-tabs">
+            <nav>
+                <ul class="tabs">
+                    <li class="tab-item active" data-tab="[data-tab-1]">
+                        <a href="javascript:void(0)">全部</a>
+                    </li>
+                    <li class="tab-item" data-tab="[data-tab-2]">
+                        <a href="javascript:void(0)">关注</a>
+                    </li>
+                    <li class="tab-item" data-tab="[data-tab-3]">
+                        <a href="javascript:void(0)">交易所</a>
+                    </li>
+                    <div class="hover-line"></div>
+                </ul>
+            </nav>
+        </div>
+        <div class="tabs-content">
+            <div class="content-item all active" data-tab-1 data-type="all">
+                <div class="page-container page-container-up hidden">
+                    <div class="page-item turn-page prev-page">
+                        <i class="iconfont icon-turn-left"></i>
+                    </div>
+                    <ul class="page">
+                    </ul>
+                    <div class="page-item turn-page next-page">
+                        <i class="iconfont icon-turn-right"></i>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <div class="table table-striped all-table">
+                        <div class="table-head">
+                            <ul>
+                                <li class="th range">
+                                    <span>排名</span>
+                                </li>
+                                <li class="th coin-name">
+                                    <span>名称</span>
+                                </li>
+                                <li class="th market-value rank-th" data-type="market_value" data-rank-type="+">
+                                    <span>流通市值</span>
+                                    <span class="rank">
+                                        <i class="iconfont icon-triangle-up"></i>
+                                        <i class="iconfont icon-triangle-down"></i>
+                                    </span>
+                                </li>
+                                <li class="th price rank-th" data-type="price">
+                                    <span>价格</span>
+                                    <span class="rank">
+                                        <i class="iconfont icon-triangle-up"></i>
+                                        <i class="iconfont icon-triangle-down"></i>
+                                    </span>
+                                </li>
+                                <li class="th coin-amount rank-th" data-type="coin_amount">
+                                    <span>流通数量</span>
+                                    <span class="rank">
+                                        <i class="iconfont icon-triangle-up"></i>
+                                        <i class="iconfont icon-triangle-down"></i>
+                                    </span>
+                                </li>
+                                <li class="th total-amount rank-th" data-type="total_amount">
+                                    <span>成交额</span>
+                                    <span class="rank">
+                                        <i class="iconfont icon-triangle-up"></i>
+                                        <i class="iconfont icon-triangle-down"></i>
+                                    </span>
+                                </li>
+                                <li class="th ratio rank-th" data-type="ratio">
+                                    <span>涨跌幅</span>
+                                    <span class="rank">
+                                        <i class="iconfont icon-triangle-up"></i>
+                                        <i class="iconfont icon-triangle-down"></i>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="table-body">
+                            <div class="tbody-container">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-container page-container-down hidden">
+                    <div class="page-item turn-page prev-page">
+                        <i class="iconfont icon-turn-left"></i>
+                    </div>
+                    <ul class="page">
+                    </ul>
+                    <div class="page-item turn-page next-page">
+                        <i class="iconfont icon-turn-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="content-item concern" data-tab-2 data-type="concern">
+                <div class="concern-none-container hidden">
+                    <div class="concern-none">
+                        <img src="/res/pc/static/images/concern-none.png" alt="">
+                        <div class="button add active">
+                            <a href="/coin/quotations.html" target="_blank">
+                                <span>添加关注</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="page-container page-container-up hidden">
+                        <div class="page-item turn-page prev-page">
+                            <i class="iconfont icon-turn-left"></i>
+                        </div>
+                        <ul class="page">
+                        </ul>
+                        <div class="page-item turn-page next-page">
+                            <i class="iconfont icon-turn-right"></i>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <div class="table table-striped concern-table">
+                            <div class="table-head">
+                                <ul>
+                                    <li class="th range">
+                                        <span>排名</span>
+                                    </li>
+                                    <li class="th coin-name">
+                                        <span>名称</span>
+                                    </li>
+                                    <li class="th market-value rank-th" data-type="market_value" data-rank-type="+">
+                                        <span>流通市值</span>
+                                        <span class="rank">
+                                            <i class="iconfont icon-triangle-up"></i>
+                                            <i class="iconfont icon-triangle-down"></i>
+                                        </span>
+                                    </li>
+                                    <li class="th price rank-th" data-type="price">
+                                        <span>价格</span>
+                                        <span class="rank">
+                                            <i class="iconfont icon-triangle-up"></i>
+                                            <i class="iconfont icon-triangle-down"></i>
+                                        </span>
+                                    </li>
+                                    <li class="th coin-amount rank-th" data-type="coin_amount">
+                                        <span>流通数量</span>
+                                        <span class="rank">
+                                            <i class="iconfont icon-triangle-up"></i>
+                                            <i class="iconfont icon-triangle-down"></i>
+                                        </span>
+                                    </li>
+                                    <li class="th total-amount rank-th" data-type="total_amount">
+                                        <span>成交额</span>
+                                        <span class="rank">
+                                            <i class="iconfont icon-triangle-up"></i>
+                                            <i class="iconfont icon-triangle-down"></i>
+                                        </span>
+                                    </li>
+                                    <li class="th ratio rank-th" data-type="ratio">
+                                        <span>涨跌幅</span>
+                                        <span class="rank">
+                                            <i class="iconfont icon-triangle-up"></i>
+                                            <i class="iconfont icon-triangle-down"></i>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="table-body">
+                                <div class="tbody-container">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-container page-container-down hidden">
+                        <div class="page-item turn-page prev-page">
+                            <i class="iconfont icon-turn-left"></i>
+                        </div>
+                        <ul class="page">
+                        </ul>
+                        <div class="page-item turn-page next-page">
+                            <i class="iconfont icon-turn-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-item ex" data-tab-3 data-type="ex">
+                <div class="page-container page-container-up hidden">
+                    <div class="page-item turn-page prev-page">
+                        <i class="iconfont icon-turn-left"></i>
+                    </div>
+                    <ul class="page">
+                    </ul>
+                    <div class="page-item turn-page next-page">
+                        <i class="iconfont icon-turn-right"></i>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <div class="table table-striped ex-table">
+                        <div class="table-head">
+                            <ul>
+                                <li class="th range">
+                                    <span>排名</span>
+                                </li>
+                                <li class="th ex-name">
+                                    <span>交易所名称</span>
+                                </li>
+                                <li class="th total-amount" data-type="total_amount">
+                                    <span>成交额（24h）</span>
+                                </li>
+                                <li class="th trade-pair" data-type="trade_pair">
+                                    <span>交易对</span>
+                                </li>
+                                <li class="th country" data-type="country">
+                                    <span>国家</span>
+                                </li>
+                                <li class="th support-currency" data-type="support-currency">
+                                    <span>交易类型</span>
+                                </li>
+                                <li class="th action" data-type="action">
+                                    <span>操作</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="table-body">
+                            <div class="tbody-container">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-container page-container-down hidden">
+                    <div class="page-item turn-page prev-page">
+                        <i class="iconfont icon-turn-left"></i>
+                    </div>
+                    <ul class="page">
+                    </ul>
+                    <div class="page-item turn-page next-page">
+                        <i class="iconfont icon-turn-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="loading-page hidden">
+            <img src="/res/pc/static/images/loading.gif" alt="">
+        </div>
+    </div>
+</block>
+<block name="file">quotations</block>

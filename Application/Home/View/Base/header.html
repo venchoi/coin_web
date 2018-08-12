@@ -1,0 +1,39 @@
+<header class="page-header">
+    <nav class="l-side">
+        <div class="logo">
+            <a href="/index.html">
+                <img src="/res/pc/static/images/logo.png" alt="Popcoin">
+            </a>
+        </div>
+        <ul class="tabs">
+            <li class="tab-item <?php if($tab == 'index') echo 'active' ?>">
+                <a href="/index.html">7x24快讯</a>
+            </li>
+            <li class="tab-item <?php if($tab == 'quotations') echo 'active' ?>">
+                <a href="/index/quotations.html">行情</a>
+            </li>
+            <div class="hover-line"></div>
+        </ul>
+    </nav>
+    <div class="r-side">
+        <div class="search">
+            <input type="text" class="search-input" placeholder="搜索">
+            <form id="search-form" action="/search.html" method="post" class="hidden">
+                <input id="keyword" name="keyword" class="hidden">
+            </form>
+            <div class="search-list">
+            </div>
+            <i class="icont-seach"></i>
+        </div>
+        <div class="user log">
+            <a href="javascript:void(0)">
+                <span>
+                    <i class="iconfont icon-user"></i>
+                </span>
+                <!-- <span class="sign signin" data-tab="signin">登录</span>
+                <span class="division">&nbsp;/&nbsp;</span>
+                <span class="sign signup" data-tab="signup">注册</span> -->
+            </a>
+        </div>
+    </div>
+</header>

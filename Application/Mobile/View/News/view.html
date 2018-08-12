@@ -1,0 +1,40 @@
+<extend name="Base:base" />
+<block name="body">
+  <div class="news-detail-page" data-news-id="{$data.news_id}">
+    <article class="news-component">
+      <h1 class="head-title">{$data.title}</h1>
+      <if condition="!empty($data['coin'])">
+        <div class="coin-tags">
+          <foreach name="data['coin']" item="coin">
+            <a href="/coin/code_<?php echo strtolower($coin['code']); ?>.html" data-code="<?php echo strtolower($coin['code']); ?>" class="market-realtime">
+              <span class="coin-code" data-code="{$coin['code']}">{$coin.code}</span>
+              <span class="ratio <?php if($coin['ratio'] > 0) {echo 'good';} else if ($coin['ratio'] < 0) {echo 'bad';}?>">{$coin.ratio}</span>
+            </a>
+          </foreach>
+        </div>
+      </if>
+      <div class="author">
+        <div class="icon">
+          <img src="{$data.channel_icon}" alt="">
+        </div>
+        <div class="name">{$data.source_name} ·
+          <time>{$data.update_time}</time>
+        </div>
+      </div>
+      <div class="artitle-content">{$data.content}</div>
+    </article>
+  </div>
+  <div class="actions-footer">
+    <div class="button-container">
+      <div class="button thumbs-up" data-type="1">
+        <i class="iconfont icon-thumbs-up"></i>
+        <span>0</span>
+      </div>
+      <div class="button collect" data-type="1">
+        <i class="iconfont icon-star"></i>
+      </div>
+    </div>
+  </div>
+</block>
+
+<block name="file">news-detail</block>

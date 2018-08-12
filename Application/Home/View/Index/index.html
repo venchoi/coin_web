@@ -1,0 +1,230 @@
+<extend name="Base:base" />
+<block name="body">
+  <div class="press-page">
+    <section class="content">
+      <div class="labels-container">
+        <div class="label active" data-tab="0">
+          <div class="button label-button">全部</div>
+        </div>
+        <foreach name="newsClassTags" item="tags">
+          <div class="label" data-tab="{$tags.id}">
+            <div class="button label-button">{$tags.name}</div>
+            <if condition="$tags['tag_type'] == 1">
+              <div class="tag new">
+                <span>NEW</span>
+              </div>
+            </if>
+            <if condition="$tags['tag_type'] == 2">
+              <div class="tag hot">
+                <span>HOT</span>
+              </div>
+            </if>
+          </div>
+        </foreach>
+      </div>
+      <div class="tabs-content">
+        <div class="content-item press-container active" data-tab="0" data-min-id="{$fastNewsList.min_id}" data-max-time="{$fastNewsList.max_time}">
+          <if condition="!empty($fastNewsList)">
+            <foreach name="fastNewsList.dataList" item="newsList">
+              <div class="panel" data-date="{$newsList.date}">
+                <time>
+                  <div class="date">{$newsList.lang_date}</div>
+                  <div class="details">{$newsList.date_week}</div>
+                </time>
+                <foreach name="newsList.news_list" item="news">
+                  <if condition="$news.catalog_id eq 200">
+                    <article press-carb data-source-id="{$news.news_id}" class="deep-card <?php if($news['recommend_level'] == '10') echo 'picked' ?>">
+                      <time>{$news.update_time|date='H:i',###}</time>
+                      <div class="article-container">
+                        <a href="/news/id_{$news.news_uuid}.html" target="_blank">
+                          <div class="main-content" news-crab>
+                            <h2 class="title">{$news.title}</h2>
+                            <p class="text">{$news.abstract}</p>
+                          </div>
+                          <if condition="!empty($news['thumb_url'])">
+                            <div class="img">
+                              <img src="{$news.thumb_url}" alt="{$news.title}">
+                            </div>
+                          </if>
+                        </a>
+                        <if condition="!empty($news['video_url'])">
+                          <video height="240" controls>
+                            <source src="{$news['video_url']}" type="video/mp4">您的浏览器不支持 HTML5 video 标签。
+                          </video>
+                        </if>
+                        <if condition="!empty($news['coins'])">
+                          <div class="coin-tags">
+                            <foreach name="news['coins']" item="coin">
+                              <a href="/coin/code_<?php echo strtolower($coin['code']); ?>.html" data-code="<?php echo strtolower($coin['code']); ?>" class="market-realtime"
+                                target="_blank">
+                                <span class="coin-code" data-code="{$coin['code']}">{$coin.code}</span>
+                                <span class="ratio <?php if($coin['ratio'] > 0) {echo 'good';} else if ($coin['ratio'] < 0) {echo 'bad';}?>">{$coin.ratio}</span>
+                              </a>
+                            </foreach>
+                          </div>
+                        </if>
+                        <div class="button-container">
+                          <div class="button small attitude good" data-attitude="attitude_up" data-type="1">
+                            <i class="iconfont icon-up"></i>
+                            <span>0</span>
+                          </div>
+                          <div class="button small attitude bad" data-attitude="attitude_down" date-type="1">
+                            <i class="iconfont icon-down"></i>
+                            <span>0</span>
+                          </div>
+                          <div class="button main collect" data-type="1">
+                            <i class="iconfont icon-star"></i>
+                            <span></span>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                    <else />
+                    <article press-carb="" data-source-id="{$news.news_id}" class="fast-card <?php if($news['recommend_level'] == '10') echo 'picked' ?>">
+                      <time>{$news.update_time|date='H:i',###}</time>
+                      <div class="article-container">
+                        <div class="main-content">
+                          <h2>{$news.title}</h2>
+                          <div class="article-content">
+                            <if condition="!empty($news['abstract'])">{$news.abstract}</if>
+                            <if condition="!empty($news['thumb_url'])">
+                              <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+                                <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                                  <a href="{$news.thumb_url}" itemprop="contentUrl" data-size="1024x1024">
+                                    <img src="{$news.thumb_url}" itemprop="thumbnail" alt="{$news.title}" />
+                                  </a>
+                                  <figcaption itemprop="caption description">{$news.title}</figcaption>
+                                </figure>
+                              </div>
+                            </if>
+                          </div>
+                        </div>
+                        <if condition="!empty($news['video_url'])">
+                          <video height="240" controls>
+                            <source src="{$news['video_url']}" type="video/mp4">您的浏览器不支持 HTML5 video 标签。
+                          </video>
+                        </if>
+                        <if condition="!empty($news['coins'])">
+                          <div class="coin-tags">
+                            <foreach name="news['coins']" item="coin">
+                              <a href="/coin/code_<?php echo strtolower($coin['code']); ?>.html" target="_blank" data-code="<?php echo strtolower($coin['code']); ?>"
+                                class="market-realtime">
+                                <span class="coin-code" data-code="{$coin['code']}">{$coin.code}</span>
+                                <span class="ratio <?php if($coin['ratio'] > 0) {echo 'good';} else if ($coin['ratio'] < 0) {echo 'bad';}?>">{$coin.ratio}</span>
+                              </a>
+                            </foreach>
+                          </div>
+                        </if>
+                        <div class="button-container">
+                          <div class="button small attitude good" data-attitude="attitude_up" data-type="1">
+                            <i class="iconfont icon-up"></i>
+                            <span>0</span>
+                          </div>
+                          <div class="button small attitude bad" data-attitude="attitude_down" date-type="1">
+                            <i class="iconfont icon-down"></i>
+                            <span>0</span>
+                          </div>
+                          <div class="button main collect" data-type="1">
+                            <i class="iconfont icon-star"></i>
+                            <span></span>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  </if>
+                </foreach>
+              </div>
+            </foreach>
+            <div class="loading-page hidden">
+              <img src="/res/pc/static/images/loading.gif" alt="">
+            </div>
+            <div class="more">
+              <div class="button">加载更多</div>
+            </div>
+            <else />
+            <div class="more">
+              <div class="button" disabled>已无更多</div>
+            </div>
+          </if>
+          <div class="noti-setting">
+            <div class="noti-tip">
+              <span class="text">通知设置</span>
+              <span class="symbol">
+                <i class="iconfont icon-arrow-down"></i>
+              </span>
+            </div>
+            <div class="noti-pop-container hidden">
+              <div class="popup-bg"></div>
+              <div class="noti-popup layui-form">
+                <div class="setting">
+                  <span class="tip">声音提示</span>
+                  <input class="switch soundSetting" checked="true" type="checkbox" name="soundSetting">
+                </div>
+                <div class="setting">
+                  <span class="tip">桌面通知</span>
+                  <input class="switch desktopSetting" checked="true" type="checkbox" name="desktopSetting">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="has-lastest-news hidden">
+            <div class="has-data">
+              <span>发现新的快讯，点击查看</span>
+            </div>
+          </div>
+        </div>
+        <foreach name="newsClassTags" item="tags">
+          <div class="content-item press-container" data-tab="{$tags.id}">
+            <div class="loading-page hidden">
+              <img src="/res/pc/static/images/loading.gif" alt="">
+            </div>
+            <div class="more hidden">
+              <div class="button">加载更多</div>
+            </div>
+          </div>
+        </foreach>
+      </div>
+    </section>
+    <aside class="aside">
+      <if condition="$ads.lenght neq 0">
+        <div class="banner">
+          <a data-href="{$ads.pc_index_top_right.target_url}" target="_blank" class="outer">
+            <img src="{$ads.pc_index_top_right.pic_url}" alt="{$ads.pc_index_top_right.titlel}">
+          </a>
+        </div>
+      </if>
+      <div class="column ud-chart">
+        <div class="header">
+          <div class="title">全市场涨跌家数</div>
+        </div>
+        <div class="body">
+          <div class="chart-container">
+            <div id="up-chart" class="chart"></div>
+            <div class="division"></div>
+            <div id="down-chart" class="chart"></div>
+          </div>
+        </div>
+      </div>
+      <div class="column coin">
+        <div class="header">
+          <div class="title">行情</div>
+          <a href="/coin/quotations.html" class="more-link" target="_blank">更多</a>
+        </div>
+        <div class="body">
+          <div class="coin-list coins-container">
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+  <script>
+    let pressIds = [];
+
+    <volist name="fastNewsList.newsIds" id="id">
+      pressIds.push({$id});
+      </volist>
+    window.pressIds = pressIds;
+  </script>
+</block>
+
+<block name="file">index</block>

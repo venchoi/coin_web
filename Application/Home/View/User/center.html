@@ -1,0 +1,204 @@
+<extend name="Base:base" />
+<block name="body">
+  <div class="user-page">
+    <aside>
+      <nav>
+        <ul class="tabs">
+          <li class="level-menu tab-item active" data-tab="[data-tab-1]">个人资料</li>
+          <li class="level-menu tab-item" data-tab="[data-tab-3]">账户管理</li>
+          <li class="level-menu tab-item" data-tab="[data-tab-4]">我的收藏</li>
+          <li class="level-menu tab-item" data-tab="[data-tab-5]">我的关注</li>
+          <div class="hover-line"></div>
+        </ul>
+      </nav>
+    </aside>
+    <div class="tabs-content">
+      <!-- 个人资料/基本信息 -->
+      <div class="content-item base-info active" data-tab-1>
+        <h1 class="content-title">基本信息</h1>
+        <div class="base-info-container">
+          <section class="info-item id">
+            <span>用户ID</span>
+            <div>
+              <span class="user-id">{$userInfo[0].uuid}</span>
+            </div>
+          </section>
+          <section class="info-item portrait">
+            <span>头像</span>
+            <div>
+              <div class="portrait-container">
+                <if condition="empty($userInfo[0]['head_pic_url'])">
+                  <div class="add-portrait">
+                    <form id="portrait-upload" method="post" action="/account/change_head_pic/wapi/ajax.html" enctype="multipart/form-data">
+                      <input type="file" class="upload-user-icon" id="inputImage" name="head_pic" accept="image/*">
+                      <input type="hidden" name="image_qua[]" value="">
+                      <input type="hidden" name="image_qua[]" value="">
+                      <input type="hidden" name="image_qua[]" value="">
+                      <input type="hidden" name="image_qua[]" value="">
+                    </form>
+                    <span>
+                      <i class="iconfont icon-user"></i>
+                    </span>
+                    <i class="iconfont icon-add"></i>
+                  </div>
+                  <else />
+                  <div class="change-portrait">
+                    <form id="portrait-upload" method="post" action="/account/change_head_pic/wapi/ajax.html" enctype="multipart/form-data">
+                      <input type="file" class="upload-user-icon" id="inputImage" name="head_pic" accept="image/*">
+                      <input type="hidden" name="image_qua[]" value="">
+                      <input type="hidden" name="image_qua[]" value="">
+                      <input type="hidden" name="image_qua[]" value="">
+                      <input type="hidden" name="image_qua[]" value="">
+                    </form>
+                    <img src="{$userInfo[0].head_pic_url}" alt="{$userInfo[0].nick}">
+                    <span class="icon-container">
+                      <i class="iconfont icon-edit"></i>
+                    </span>
+                  </div>
+                </if>
+              </div>
+              <span class="tip">图片大小不超过2MB</span>
+            </div>
+          </section>
+          <section class="info-item nick">
+            <span>昵称</span>
+            <div>
+              <div>
+                <input type="text" class="nick-name" value="{$userInfo[0].nick}">
+              </div>
+              <span class="tip">不得超过10个字符</span>
+            </div>
+          </section>
+          <section class="info-item intro">
+            <span>简介</span>
+            <div>
+              <div>
+                <textarea type="text" class="intro-desc" value="{$userInfo[0].info}">{$userInfo[0].info}</textarea>
+              </div>
+              <span class="tip">
+                <i>{$userInfo[0].info|strlen}</i>/400</span>
+            </div>
+          </section>
+        </div>
+        <div class="button main save">保存</div>
+      </div>
+      <!-- 个人资料/实名认证 -->
+      <div class="content-item" data-tab-2></div>
+      <!-- 账户管理 -->
+      <div class="content-item account-manage" data-tab-3>
+        <h1 class="content-title">账户管理</h1>
+        <div class="account-manage-container">
+          <section class="account-item">
+            <span>绑定手机</span>
+            <div>
+              <span class="phone" data-phone="{$userInfo[0].mobile}">{$userInfo[0].mobile|substr=0,3}****{$userInfo[0].mobile|substr=7,10}</span>
+              <div class="action" data-type="phone">修改</div>
+            </div>
+          </section>
+          <section class="account-item">
+            <span>账户密码</span>
+            <div>
+              <span>
+                <i class="iconfont icon-lock"></i>
+              </span>
+              <if condition="$userInfo.set_password eq 1">
+                <div class="action" data-type="set-password">设置</div>
+                <else />
+                <div class="action" data-type="reset-password">修改</div>
+              </if>
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- 我的收藏 -->
+      <div class="content-item" data-tab-4>
+        <h1 class="content-title">我的收藏</h1>
+        <div class="press-container">
+          <div class="panel"></div>
+          <div class="loading-page hidden">
+            <img src="/res/pc/static/images/loading.gif" alt="">
+          </div>
+          <div class="more hidden">
+            <div class="button">加载更多</div>
+          </div>
+        </div>
+        <div class="collect-none hidden">
+          <div>
+            <img src="/res/m/static/images/collect-none.png" alt="">
+            <div class="tips">
+              <span>您还没有收藏的内容哦</span>
+            </div>
+            <div class="postscript">
+              <span>赶快去收藏内容，丰富自己的知识库吧</span>
+            </div>
+            <div class="button active">
+              <a href="/index.html" target="_blank">去逛逛</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 我的关注 -->
+      <div class="content-item" data-tab-5>
+        <h1 class="content-title">我的关注</h1>
+        <div class="coins-container">
+        </div>
+        <div class="collect-none hidden">
+          <div>
+            <img src="/res/m/static/images/concern-none.png" alt="">
+            <div class="tips">
+              <span>您还没有收藏的币种哦</span>
+            </div>
+            <div class="postscript">
+              <span>赶快去关注，丰富自己的财富库吧</span>
+            </div>
+          </div>
+        </div>
+        <div class="more hidden">
+          <div class="button">加载更多</div>
+        </div>
+      </div>
+    </div>
+    <div class="layer img-layer hidden">
+      <div class="layer-bg"></div>
+      <div class="layer-dialog">
+        <div class="layer-header">
+          <ul class="tabs">
+            <li class="tab-item">头像裁剪</li>
+          </ul>
+          <div class="head-actions">
+            <span class="close">
+              <i class="iconfont icon-close"></i>
+            </span>
+          </div>
+        </div>
+        <div class="layer-content">
+          <div class="text-center max-text">
+            <div class="cropper">
+              <img id="image" src="">
+            </div>
+            <div class="cropper-preview">
+              <div class="img-preview big"></div>
+              <div class="img-preview middle"></div>
+              <div class="img-preview small"></div>
+            </div>
+            <div class="button-container">
+              <div class="button portrait-save">确定并保存</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // const submitPortrait = () => {
+    //   var cropperData = cropper.getImgData();
+    //   const  $form = $('#iconupload');
+    //   const self = this;
+    //   document.getElementById('portrait-upload').submit(function (e) {
+    //     console.log('123');
+    //     return true;
+    //   });
+    // };
+  </script>
+</block>
+<block name="file">user-center</block>

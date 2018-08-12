@@ -1,0 +1,72 @@
+<extend name="Base:base" />
+
+<block name="body">
+  <div class="search-page" data-keyword="{$keyword}">
+    <if condition="!empty($keyword)">
+      <div class="search">
+        <input type="text" class="search-input" placeholder="{$keyword}">
+        <form id="search-form" action="/search.html" method="post" class="hidden">
+          <input id="keyword" name="keyword" class="hidden">
+        </form>
+        <div class="search-list">
+        </div>
+        <span class="search-button">
+          <i class="iconfont icon-search"></i>
+        </span>
+      </div>
+      <div class="search-result">
+        <div class="search-tabs">
+          <nav>
+            <ul class="tabs">
+              <li class="tab-item active" data-tab="[data-tab-1]">
+                <a href="javascript:void(0)">快讯</a>
+              </li>
+              <li class="tab-item" data-tab="[data-tab-2]">
+                <a href="javascript:void(0)">币种</a>
+              </li>
+              <!-- <div class="hover-line"></div> -->
+            </ul>
+          </nav>
+        </div>
+        <div class="tabs-content result-press">
+          <div class="content-item press-container active" data-tab-1>
+            <div class="loading-page hidden">
+              <img src="/res/m/static/images/loading.gif" alt="">
+            </div>
+            <div class="more">
+              <div class="button">加载更多</div>
+            </div>
+          </div>
+          <div class="content-item coins-container" data-tab-2>
+            <div class="loading-page hidden">
+              <img src="/res/m/static/images/loading.gif" alt="">
+            </div>
+            <div class="no-single-result">
+              <div class="text">没有找到关于“{$keyword}”的相关币种</div>
+            </div>
+          </div>
+        </div>
+        <div class="no-result hidden">
+          <div class="search-key">
+            <strong>没有找到关于「 {$keyword}} 」的相关快讯</strong>
+          </div>
+          <div class="tips">请修改或者尝试其他搜索词</div>
+        </div>
+      </div>
+      <else />
+      <div class="search">
+        <input type="text" class="search-input" placeholder="搜索">
+        <form id="search-form" action="/search.html" method="post" class="hidden">
+          <input id="keyword" name="keyword" class="hidden">
+        </form>
+        <div class="search-list">
+        </div>
+        <span class="search-button">
+          <i class="iconfont icon-search"></i>
+        </span>
+      </div>
+    </if>
+  </div>
+</block>
+
+<block name="file">search</block>

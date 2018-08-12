@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <title>{$seo.title}</title>
+        <meta name="keywords" content="{$seo.keyword}">
+        <meta name="description" content="{$seo.description}">
+        <meta http-equiv="Cache-Control" content="no-transform"/> 
+        <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+        <!-- 通用样式 -->
+
+        <link rel="shortcut icon" href="{$Think.CDN_URL}/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="{$Think.CDN_URL}/favicon.ico" type="image/x-icon"/>
+        <link rel="bookmark" href="{$Think.CDN_URL}/favicon.ico" type="image/x-icon"/>
+        <link rel="stylesheet" href='//at.alicdn.com/t/font_646288_x2fbcyfe39e.css'/>
+        <link rel="stylesheet" href='{$Think.CDN_URL}/res/pc/static/css/<block name="file"></block>.css'/>
+
+        <block name="head"></block>
+    </head>
+
+    <body>
+        <include file="Base:header"/>
+
+        <div class="main-container">
+            <block name="body"></block>
+            <div class="scroll-top hidden">
+                <i class="iconfont icon-top"></i>
+            </div>
+        </div>
+        <include file="Base:footer"/>
+    </body>
+    <script src='{$Think.CDN_URL}/res/pc/static/js/<block name="file"></block>.js'></script>
+</html>
